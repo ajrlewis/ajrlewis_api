@@ -2,6 +2,6 @@
 
 source .env
 source venv/bin/activate
-cd src
+cd api
 fastapi dev main.py
 deactivate
