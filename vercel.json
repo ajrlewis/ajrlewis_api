@@ -1,0 +1,14 @@
+{
+    "env": {
+        "PYTHONPATH": "src/"
+    },
+    "rewrites": [{
+        "source": "/(.*)",
+        "destination": "/src/main"
+    }],
+    "functions": {
+        "src/main.py": {
+            "maxDuration": 300
+        }
+    }
+}
