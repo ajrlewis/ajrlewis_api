@@ -1,6 +1,9 @@
 from typing import Annotated
 from fastapi import Header, HTTPException
+from fastapi.security import OAuth2PasswordBearer
 from .database import SessionLocal
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
 def get_db():
@@ -11,6 +14,5 @@ def get_db():
         db.close()
 
 
-async def get_token_header(x_token: Annotated[str, Header()]):
-    if x_token != "fake-super-secret-token":
-        raise HTTPException(status_code=400, detail="X-Token header invalid")
+# SessionDependency = Annotated[Session, Depends(get_db)]
+# TokenDep = Annotated[str, Depends(reusable_oauth2)]
