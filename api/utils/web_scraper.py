@@ -1,3 +1,4 @@
+from urllib.parse import urlparse
 import urllib3
 import requests
 from bs4 import BeautifulSoup
@@ -5,13 +6,33 @@ from bs4 import BeautifulSoup
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
+def sanitize_url(url: str) -> str:
+    url = url.strip()
+    parsed_url = urlparse(url)
+    if not parsed_url.scheme:
+        url = "https://" + url
+    if parsed_url.netloc.startswith("www."):
+        url = (
+            parsed_url.scheme
+            + "://"
+            + parsed_url.netloc.replace("www.", "", 1)
+            + parsed_url.path
+        )
+    return url
+
+
 def get_response(url: str) -> requests.models.Response:
     headers = {
         "User-Agent": "Mozilla/5.0 (Platform; Security; OS-or-CPU; Localization; rv:1.4) Gecko/20030624 Netscape/7.1 (ax)"
     }
-
+    # headers_list = [
+    #     {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"},
+    #     {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.81 Safari/537.3"},
+    #     {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.97 Safari/537.3"}
+    # ]
+    sanitized_url = sanitize_url(url)
     response = requests.get(
-        url, headers=headers, verify=False, allow_redirects=True, timeout=20
+        sanitized_url, headers=headers, verify=False, allow_redirects=True, timeout=20
     )
     response.raise_for_status()
     return response

@@ -1,20 +1,25 @@
+from typing import Annotated
+
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
+
 from ..crud import user
-from ..dependencies import get_db
+from ..dependencies import get_db, oauth2_scheme
 from ..schemas import user as user_schema
 
 router = APIRouter(
     prefix="/user",
     tags=["user"],
-    dependencies=[Depends(get_db)],
-    # dependencies=[Depends(get_token_header)],
+    dependencies=[Depends(get_db), Depends(oauth2_scheme)],
     responses={404: {"description": "Not found"}},
 )
 
 
 @router.get("/")
-async def read_users(db: Session = Depends(get_db)):
+async def read_users(
+    token: Annotated[str, Depends(oauth2_scheme)], db: Session = Depends(get_db)
+):
+    return {"token": token}
     users = user.get_users(db)
     return users
 
