@@ -51,9 +51,26 @@ def scrape_website_for_text(url: str) -> tuple[str, str]:
         response = get_response(url)
     except requests.exceptions.RequestException as e:
         return "", f"{e}"
+    content_type = response.headers.get("content-type", "")
+    response_is_xml = "xml" in content_type
+    if response_is_xml:
+        parser = "lxml-xml"
+        markup = response.content
+    else:
+        parser = "html.parser"
+        markup = response.text
     try:
-        soup = BeautifulSoup(response.text, "html.parser")
-        text = soup.body.get_text(" ", strip=True)
-    except AttributeError as e:
-        return "", "BeautifulSoup unable to extract body from response text."
+        soup = BeautifulSoup(markup, parser)
+        if response_is_xml:
+            texts = []
+            items = soup.find_all("item")
+            for item in items:
+                title = item.find("title").text.strip()
+                description = item.find("description").text.strip()
+                texts.append(f"{title}: {description}")
+            text = "\n".join(texts)
+        else:
+            text = soup.body.get_text(" ", strip=True)
+    except Exception as e:
+        return "", f"BeautifulSoup unable to extract body from response text {e}."
     return text, ""
