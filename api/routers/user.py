@@ -15,28 +15,28 @@ router = APIRouter(
 )
 
 
-@router.get("/")
-async def read_users(
-    token: Annotated[str, Depends(oauth2_scheme)], db: Session = Depends(get_db)
-):
-    return {"token": token}
-    users = user.get_users(db)
-    return users
+# @router.get("/")
+# async def read_users(
+#     token: Annotated[str, Depends(oauth2_scheme)], db: Session = Depends(get_db)
+# ):
+#     return {"token": token}
+#     users = user.get_users(db)
+#     return users
 
 
-@router.get("/{user_id}")
-async def read_user(user_id: int, db: Session = Depends(get_db)):
-    db_user = user.get_user(db, user_id)
-    if db_user:
-        return db_user
-    else:
-        raise HTTPException(status_code=404, detail="user not found")
+# @router.get("/{user_id}")
+# async def read_user(user_id: int, db: Session = Depends(get_db)):
+#     db_user = user.get_user(db, user_id)
+#     if db_user:
+#         return db_user
+#     else:
+#         raise HTTPException(status_code=404, detail="user not found")
 
 
-@router.post("/")
-async def create_user(user: user_schema.UserCreate, db: Session = Depends(get_db)):
-    db_user = user.get_user(db, user_id)
-    if db_user:
-        return db_user
-    else:
-        raise HTTPException(status_code=404, detail="user not found")
+# @router.post("/")
+# async def create_user(user: user_schema.UserCreate, db: Session = Depends(get_db)):
+#     db_user = user.get_user(db, user_id)
+#     if db_user:
+#         return db_user
+#     else:
+#         raise HTTPException(status_code=404, detail="user not found")

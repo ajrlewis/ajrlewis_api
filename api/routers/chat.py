@@ -57,17 +57,17 @@ async def root(context_messages: list[ContextMessage]) -> ContextMessage:
     return message
 
 
-@router.post("/ask/")
-async def ask(question: str, system: str = "") -> dict[str, str]:
-    """Returns the response to q question."""
-    # content = chat.call_gpt_model(context_messages)
-    return {"answer": "foobar"}
+# @router.post("/ask/")
+# async def ask(question: str, system: str = "") -> dict[str, str]:
+#     """Returns the response to q question."""
+#     # content = chat.call_gpt_model(context_messages)
+#     return {"answer": "foobar"}
 
 
-@router.post("/sentiment/")
-async def sentiment(text: str) -> dict[str, str]:
-    """Returns the sentiment of a piece text."""
-    return {"sentiment": "neutral"}
+# @router.post("/sentiment/")
+# async def sentiment(text: str) -> dict[str, str]:
+#     """Returns the sentiment of a piece text."""
+#     return {"sentiment": "neutral"}
 
 
 # @router.post("/summarize/")
