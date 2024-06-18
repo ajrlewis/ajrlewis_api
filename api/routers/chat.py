@@ -52,12 +52,13 @@ router = APIRouter(
 @router.post("/", response_model=ContextMessage)
 async def root(context_messages: list[ContextMessage]) -> ContextMessage:
     """Returns the next message from a list of context messages."""
-    message = chat.call_openai(context_messages)
+    # message = chat.call_openai(context_messages)
+    message = {"role": "assistant", "content": "Foobar"}
     return message
 
 
 @router.post("/ask/")
-async def ask(text: str, system: str = "") -> dict[str, str]:
+async def ask(question: str, system: str = "") -> dict[str, str]:
     """Returns the response to q question."""
     # content = chat.call_gpt_model(context_messages)
     return {"answer": "foobar"}
@@ -69,32 +70,32 @@ async def sentiment(text: str) -> dict[str, str]:
     return {"sentiment": "neutral"}
 
 
-@router.post("/summarize/")
-async def summarize(text: str) -> dict[str, str]:
-    """Returns a summary of the text."""
-    return {"summary": "foobar"}
+# @router.post("/summarize/")
+# async def summarize(text: str) -> dict[str, str]:
+#     """Returns a summary of the text."""
+#     return {"summary": "foobar"}
 
 
-@router.post("/translate/")
-async def translate(text: str) -> dict[str, str]:
-    """Returns the translation of a piece text."""
-    return {"translation": "foobar"}
+# @router.post("/translate/")
+# async def translate(text: str) -> dict[str, str]:
+#     """Returns the translation of a piece text."""
+#     return {"translation": "foobar"}
 
 
-@router.post("/extract/")
-async def extract(text: str) -> dict[str, str]:
-    """Returns a JSON object extracted from the text."""
-    return {"sentiment": "foobar"}
+# @router.post("/extract/")
+# async def extract(text: str) -> dict[str, str]:
+#     """Returns a JSON object extracted from the text."""
+#     return {"sentiment": "foobar"}
 
 
-@router.post("/similarity/")
-async def similarity(text: str) -> dict[str, str]:
-    """Returns the similarity between pieces of text."""
-    return {"similarity": "foobar"}
+# @router.post("/similarity/")
+# async def similarity(text: str) -> dict[str, str]:
+#     """Returns the similarity between pieces of text."""
+#     return {"similarity": "foobar"}
 
 
-@router.post("/function/")
-async def function(text: str) -> dict[str, str]:
-    """Returns the sentiment of a piece text."""
-    # content = chat.call_gpt_model(context_messages)
-    return {"sentiment": "neutral"}
+# @router.post("/function/")
+# async def function(text: str) -> dict[str, str]:
+#     """Returns the sentiment of a piece text."""
+#     # content = chat.call_gpt_model(context_messages)
+#     return {"sentiment": "neutral"}
