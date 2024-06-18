@@ -24,12 +24,3 @@ async def status(db: Session = Depends(get_db)):
         return {"database": "Online", "server": "Online"}
     except Exception as e:
         return {"database": "Offline", "server": "Online"}
-
-
-# def validate(session):
-#     try:
-#         # Try to get the underlying session connection, If you can get it, its up
-#         connection = session.connection()
-#         return True
-#     except:
-#         return False

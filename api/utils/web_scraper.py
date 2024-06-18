@@ -74,3 +74,13 @@ def scrape_website_for_text(url: str) -> tuple[str, str]:
     except Exception as e:
         return "", f"BeautifulSoup unable to extract body from response text {e}."
     return text, ""
+
+
+def main():
+    url = "https://www.coindesk.com/arc/outboundfeeds/rss/"
+    text, error = scrape_website_for_text(url)
+    print(f"{text = }")
+
+
+if __name__ == "__main__":
+    main()
