@@ -1,7 +1,10 @@
 {
-    "functions": {
-        "api/main.py": {
-            "maxDuration": 60
-        }
-    }
+    "env": {
+        "PYTHONPATH": "api/"
+    },
+    "builds": [{
+        "src": "api/main.py",
+        "use": "@vercel/python"
+    }, ]
+
 }
