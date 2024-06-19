@@ -2,10 +2,6 @@
     "env": {
         "PYTHONPATH": "api/"
     },
-    "routes": [{
-        "src": "api/main.py",
-        "dest": "api/main.py"
-    }],
     "functions": {
         "api/main.py": {
             "maxDuration": 60
