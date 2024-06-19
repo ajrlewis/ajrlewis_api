@@ -2,6 +2,10 @@
     "env": {
         "PYTHONPATH": "api/"
     },
+    "rewrites": [{
+        "source": "/(.*)",
+        "destination": "api/main.py"
+    }],
     "builds": [{
         "src": "api/main.py",
         "use": "@vercel/python"
