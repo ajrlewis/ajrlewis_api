@@ -7,7 +7,7 @@
         "use": "@vercel/python"
     }],
     "routes": [{
-        "src": "api/main.py",
+        "src": "/api/main.py",
         "dest": "api/main.py"
     }]
 }
