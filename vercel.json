@@ -1,11 +1,4 @@
 {
-    "env": {
-        "PYTHONPATH": "api/"
-    },
-    "rewrites": [{
-        "source": "/api/(.*)",
-        "destination": "/api/main"
-    }],
     "functions": {
         "api/main.py": {
             "maxDuration": 60
