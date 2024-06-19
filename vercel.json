@@ -3,7 +3,7 @@
         "PYTHONPATH": "api/"
     },
     "rewrites": [{
-        "source": "/api/routers(.*)",
+        "source": "/api/(.*)",
         "destination": "/api/main"
     }],
     "functions": {

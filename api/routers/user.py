@@ -1,18 +1,18 @@
-from typing import Annotated
+# from typing import Annotated
 
-from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
+# from fastapi import APIRouter, Depends, HTTPException
+# from sqlalchemy.orm import Session
 
-from ..crud import user
-from ..dependencies import get_db, oauth2_scheme
-from ..schemas import user as user_schema
+# from ..crud import user
+# from ..dependencies import get_db, oauth2_scheme
+# from ..schemas import user as user_schema
 
-router = APIRouter(
-    prefix="/user",
-    tags=["user"],
-    dependencies=[Depends(get_db), Depends(oauth2_scheme)],
-    responses={404: {"description": "Not found"}},
-)
+# router = APIRouter(
+#     prefix="/user",
+#     tags=["user"],
+#     dependencies=[Depends(get_db), Depends(oauth2_scheme)],
+#     responses={404: {"description": "Not found"}},
+# )
 
 
 # @router.get("/")
