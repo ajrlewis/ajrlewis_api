@@ -3,6 +3,7 @@
         "PYTHONPATH": "api/"
     },
     "builds": [{
+        "use": "@vercel/python",
         "src": "api/main.py"
     }]
 }
