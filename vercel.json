@@ -3,7 +3,7 @@
         "PYTHONPATH": "api/"
     },
     "routes": [{
-        "src": "/(.*)",
+        "src": "api/main.py",
         "dest": "api/main.py"
     }],
     "functions": {
