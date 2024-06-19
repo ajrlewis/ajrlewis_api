@@ -2,12 +2,13 @@
     "env": {
         "PYTHONPATH": "api/"
     },
-    "builds": [{
-        "src": "api/main.py",
-        "use": "@vercel/python"
+    "rewrites": [{
+        "source": "/api/routers(.*)",
+        "destination": "/api/main"
     }],
-    "routes": [{
-        "src": "/api/main.py",
-        "dest": "api/main.py"
-    }]
+    "functions": {
+        "api/main.py": {
+            "maxDuration": 60
+        }
+    }
 }
