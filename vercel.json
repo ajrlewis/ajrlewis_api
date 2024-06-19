@@ -2,9 +2,7 @@
     "env": {
         "PYTHONPATH": "api/"
     },
-    "functions": {
-        "api/main.py": {
-            "maxDuration": 60
-        }
-    }
+    "builds": [{
+        "src": "api/main.py"
+    }]
 }
