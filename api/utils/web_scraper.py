@@ -128,7 +128,8 @@ def scrape_dynamic_website_for_text(url: str) -> tuple[str]:
     )
     chrome_options.binary_location = os.getcwd() + "/bin/headless-chromium"
 
-    driver = webdriver.Chrome(chrome_options=chrome_options)
+    driver = webdriver.Chrome(options=chrome_options)
+
     # driver = webdriver.Chrome(
     #     service=ChromeService(ChromeDriverManager(driver_version="2.26").install()),
     #     options=chrome_options,
