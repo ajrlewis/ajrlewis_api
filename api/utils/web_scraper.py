@@ -106,8 +106,12 @@ def scrape_dynamic_website_for_text(url: str) -> tuple[str]:
     # options.add_argument("--ignore-certificate-errors")
     # options.add_argument("--no-sandbox")
     # options.add_argument("disable-notifications")
+    # driver = webdriver.Chrome(
+    #     service=ChromeService(ChromeDriverManager().install()), options=options
+    # )
     driver = webdriver.Chrome(
-        service=ChromeService(ChromeDriverManager().install()), options=options
+        service=ChromeService(ChromeDriverManager(driver_version="2.26").install()),
+        options=options,
     )
 
     driver.get(url)
