@@ -61,6 +61,7 @@ def scrape_website_for_text(url: str) -> tuple[str, str]:
         f"{__name__}.scrape_website_for_text", "response.content = ", response.content
     )
     content_type = response.headers.get("content-type", "")
+    print(f"{__name__}.scrape_website_for_text", "content_type = ", content_type)
     response_is_xml = "xml" in content_type
     if response_is_xml:
         parser = "lxml-xml"
@@ -81,7 +82,13 @@ def scrape_website_for_text(url: str) -> tuple[str, str]:
         else:
             text = soup.body.get_text(" ", strip=True)
     except Exception as e:
-        return "", f"BeautifulSoup unable to extract body from response text {e}."
+        text, error = scrape_dynamic_website_for_text(url)
+        if text:
+            return text, ""
+        return (
+            "",
+            f"BeautifulSoup unable to extract body from response text {e}. {error}.",
+        )
     return text, ""
 
 
