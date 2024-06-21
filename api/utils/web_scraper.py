@@ -50,7 +50,10 @@ def scrape_website_for_text(url: str) -> tuple[str, str]:
     try:
         response = get_response(url)
     except requests.exceptions.RequestException as e:
-        return "", f"{e}"
+        text, error = scrape_dynamic_website_for_text(url)
+        if text:
+            return text, ""
+        return "", f"{e} {error}"
     content_type = response.headers.get("content-type", "")
     response_is_xml = "xml" in content_type
     if response_is_xml:
@@ -76,10 +79,40 @@ def scrape_website_for_text(url: str) -> tuple[str, str]:
     return text, ""
 
 
+def scrape_dynamic_website_for_text(url: str) -> tuple[str]:
+    import time
+    from selenium import webdriver
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.chrome.service import Service as ChromeService
+    from webdriver_manager.chrome import ChromeDriverManager
+
+    options = webdriver.ChromeOptions()
+    # options.add_argument("--headless=new")
+    # options.add_argument("--ignore-certificate-errors")
+    # options.add_argument("--no-sandbox")
+    # options.add_argument("disable-notifications")
+    driver = webdriver.Chrome(
+        service=ChromeService(ChromeDriverManager().install()), options=options
+    )
+
+    driver.get(url)
+
+    texts = []
+    elements = driver.find_elements(By.TAG_NAME, "p")
+    for element in elements:
+        text = element.text
+        if text:
+            texts.append(text)
+    text = " ".join(texts)
+    error = "" if text else "Failed to scrape dynamic website for text."
+    return text, error
+
+
 def main():
     url = "https://www.coindesk.com/arc/outboundfeeds/rss/"
     text, error = scrape_website_for_text(url)
     print(f"{text = }")
+    print(f"{error = }")
 
 
 if __name__ == "__main__":
