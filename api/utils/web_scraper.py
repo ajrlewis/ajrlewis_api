@@ -96,24 +96,44 @@ def scrape_dynamic_website_for_text(url: str) -> tuple[str]:
     print(f"{__name__}.scrape_dynamic_website_for_text")
 
     import time
-    from selenium import webdriver
+    from seleniumwire import webdriver
+
+    # from selenium import webdriver
     from selenium.webdriver.common.by import By
     from selenium.webdriver.chrome.service import Service as ChromeService
     from webdriver_manager.chrome import ChromeDriverManager
 
-    options = webdriver.ChromeOptions()
-    # options.add_argument("--headless=new")
-    # options.add_argument("--ignore-certificate-errors")
-    # options.add_argument("--no-sandbox")
-    # options.add_argument("disable-notifications")
-    # driver = webdriver.Chrome(
-    #     service=ChromeService(ChromeDriverManager().install()), options=options
-    # )
+    chrome_options = webdriver.ChromeOptions()
+    # chrome_options.add_argument("--headless=new")
+    # chrome_options.add_argument("--ignore-certificate-errors")
+    # chrome_options.add_argument("--no-sandbox")
+    # chrome_options.add_argument("disable-notifications")
     driver = webdriver.Chrome(
-        service=ChromeService(ChromeDriverManager(driver_version="2.26").install()),
-        options=options,
+        service=ChromeService(ChromeDriverManager().install()),
+        # service=ChromeService(ChromeDriverManager(driver_version="2.26").install()),
+        options=chrome_options,
         seleniumwire_options={"request_storage_base_dir": "/tmp"},
     )
+
+    # from seleniumwire import webdriver
+    # from selenium.webdriver.chrome.service import Service
+    # from webdriver_manager.chrome import ChromeDriverManager
+    # from selenium.webdriver.chrome.options import Options
+
+    # chrome_options = Options()
+    # chrome_options.add_argument("--headless")
+    # chrome_options.add_argument("--no-sandbox")
+    # chrome_options.add_argument("--start-maximized")
+    # chrome_options.add_argument("--start-fullscreen")
+    # chrome_options.add_argument("--single-process")
+    # chrome_options.add_argument("--disable-dev-shm-usage")
+    # chrome_options.add_argument("--disk-cache-size-0")
+
+    # driver = webdriver.Chrome(
+    #     options=chrome_options,
+    #     service=Service(ChromeDriverManager().install()),
+    #     seleniumwire_options={"request_storage_base_dir": "/tmp"},
+    # )
 
     driver.get(url)
 
