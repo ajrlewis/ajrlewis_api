@@ -47,13 +47,14 @@ def check_website_exists(url: str) -> bool:
 
 
 def scrape_website_for_text(url: str) -> tuple[str, str]:
+    print(f"{__name__}.scrape_website_for_text")
     try:
         response = get_response(url)
     except requests.exceptions.RequestException as e:
         text, error = scrape_dynamic_website_for_text(url)
         if text:
             return text, ""
-        return "", f"{e} {error}"
+        return "", f"{e}. {error}"
     content_type = response.headers.get("content-type", "")
     response_is_xml = "xml" in content_type
     if response_is_xml:
@@ -80,6 +81,8 @@ def scrape_website_for_text(url: str) -> tuple[str, str]:
 
 
 def scrape_dynamic_website_for_text(url: str) -> tuple[str]:
+    print(f"{__name__}.scrape_dynamic_website_for_text")
+
     import time
     from selenium import webdriver
     from selenium.webdriver.common.by import By
