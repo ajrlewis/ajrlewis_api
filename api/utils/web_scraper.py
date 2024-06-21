@@ -55,6 +55,7 @@ def scrape_website_for_text(url: str) -> tuple[str, str]:
         if text:
             return text, ""
         return "", f"{e}. {error}"
+    print(f"{__name__}.scrape_website_for_text", "response = ", response)
     content_type = response.headers.get("content-type", "")
     response_is_xml = "xml" in content_type
     if response_is_xml:
