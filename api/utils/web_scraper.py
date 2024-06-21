@@ -112,6 +112,7 @@ def scrape_dynamic_website_for_text(url: str) -> tuple[str]:
     driver = webdriver.Chrome(
         service=ChromeService(ChromeDriverManager(driver_version="2.26").install()),
         options=options,
+        seleniumwire_options={"request_storage_base_dir": "/tmp"},
     )
 
     driver.get(url)
