@@ -96,9 +96,9 @@ def scrape_dynamic_website_for_text(url: str) -> tuple[str]:
     print(f"{__name__}.scrape_dynamic_website_for_text")
 
     import time
-    from seleniumwire import webdriver
 
-    # from selenium import webdriver
+    # from seleniumwire import webdriver
+    from selenium import webdriver
     from selenium.webdriver.common.by import By
     from selenium.webdriver.chrome.service import Service as ChromeService
     from webdriver_manager.chrome import ChromeDriverManager
