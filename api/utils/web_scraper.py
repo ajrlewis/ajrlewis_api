@@ -109,8 +109,7 @@ def scrape_dynamic_website_for_text(url: str) -> tuple[str]:
     # chrome_options.add_argument("--no-sandbox")
     # chrome_options.add_argument("disable-notifications")
     driver = webdriver.Chrome(
-        service=ChromeService(ChromeDriverManager().install()),
-        # service=ChromeService(ChromeDriverManager(driver_version="2.26").install()),
+        service=ChromeService(ChromeDriverManager(driver_version="2.26").install()),
         options=chrome_options,
         seleniumwire_options={"request_storage_base_dir": "/tmp"},
     )
