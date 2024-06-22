@@ -9,5 +9,10 @@
     "builds": [{
         "src": "api/main.py",
         "use": "@vercel/python"
-    }]
+    }],
+    "functions": {
+        "api/main.py": {
+            "maxDuration": 60
+        }
+    }
 }
