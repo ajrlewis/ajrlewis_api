@@ -155,11 +155,15 @@ def scrape_dynamic_website_for_text(url: str) -> tuple[str]:
         "firefox_options = ",
         firefox_options,
     )
-    driver = webdriver.Firefox(options=firefox_options)
+
+    try:
+        driver = webdriver.Firefox(options=firefox_options)
+    except Exception as e:
+        print(f"{__name__}.scrape_dynamic_website_for_text", "e = ", e)
+        return "", f"{e}"
+
     print(f"{__name__}.scrape_dynamic_website_for_text", "driver = ", driver)
     driver.get(url)
-
-    # driver.get(url)
 
     texts = []
     elements = driver.find_elements(By.TAG_NAME, "p")
