@@ -99,6 +99,14 @@ def scrape_website_for_text(url: str) -> tuple[str, str]:
             text = soup.body.get_text(" ", strip=True)
     except Exception as e:
         return "", f"BeautifulSoup unable to extract body from response text {e}."
+
+    if not text:
+        print(f"{__name__}.scrape_website_for_text", "text = ", text)
+        text, error = scrape_dynamic_website_for_text(url)
+        if text:
+            return text, ""
+        return "", f"{error}"
+
     return text, ""
 
 
