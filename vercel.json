@@ -1,9 +1,9 @@
 {
     "env": {
-        "PYTHONPATH": "api/"
+        "PYTHONPATH": "src/"
     },
     "functions": {
-        "api/main.py": {
+        "src/main.py": {
             "maxDuration": 60
         }
     },
