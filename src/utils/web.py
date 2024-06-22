@@ -68,38 +68,37 @@ def check_website_exists(url: str) -> bool:
 
 def scrape_website_for_text(url: str) -> tuple[str, str]:
     print(f"{__name__}.scrape_website_for_text", "url = ", url)
-    # try:
-    #     response = get_response(url)
-    # except requests.exceptions.RequestException as e:
-    #     print(f"{__name__}.scrape_website_for_text", "Failed to get response", e)
-    #     text, error = scrape_dynamic_website_for_text(url)
-    #     if text:
-    #         return text, ""
-    #     return "", f"{e}. {error}"
-    # content_type = response.headers.get("content-type", "")
-    # response_is_xml = "xml" in content_type
-    # if response_is_xml:
-    #     parser = "lxml-xml"
-    #     markup = response.content
-    # else:
-    #     parser = "html.parser"
-    #     markup = response.text
-    # text = ""
-    # try:
-    #     soup = BeautifulSoup(markup, parser)
-    #     if response_is_xml:
-    #         texts = []
-    #         items = soup.find_all("item")
-    #         for item in items:
-    #             title = item.find("title").text.strip()
-    #             description = item.find("description").text.strip()
-    #             texts.append(f"{title}: {description}")
-    #         text = "\n".join(texts)
-    #     else:
-    #         text = soup.body.get_text(" ", strip=True)
-    # except Exception as e:
-    #     return "", f"BeautifulSoup unable to extract body from response text {e}."
+    try:
+        response = get_response(url)
+    except requests.exceptions.RequestException as e:
+        print(f"{__name__}.scrape_website_for_text", "Failed to get response", e)
+        text, error = scrape_dynamic_website_for_text(url)
+        if text:
+            return text, ""
+        return "", f"{e}. {error}"
+    content_type = response.headers.get("content-type", "")
+    response_is_xml = "xml" in content_type
+    if response_is_xml:
+        parser = "lxml-xml"
+        markup = response.content
+    else:
+        parser = "html.parser"
+        markup = response.text
     text = ""
+    try:
+        soup = BeautifulSoup(markup, parser)
+        if response_is_xml:
+            texts = []
+            items = soup.find_all("item")
+            for item in items:
+                title = item.find("title").text.strip()
+                description = item.find("description").text.strip()
+                texts.append(f"{title}: {description}")
+            text = "\n".join(texts)
+        else:
+            text = soup.body.get_text(" ", strip=True)
+    except Exception as e:
+        return "", f"BeautifulSoup unable to extract body from response text {e}."
     if not text:
         print(f"{__name__}.scrape_website_for_text", "text = ", text)
         text, error = scrape_dynamic_website_for_text(url)
@@ -138,16 +137,16 @@ def scrape_dynamic_website_for_text(url: str) -> tuple[str]:
     firefox_options.add_argument("--no-sandbox")
     firefox_options.add_argument("--disable-gpu")
     firefox_options.add_argument("--window-size=1280x1696")
-    firefox_options.add_argument("--user-data-dir=/tmp/user-data")
+    # firefox_options.add_argument("--user-data-dir=/tmp/user-data")
     firefox_options.add_argument("--hide-scrollbars")
     firefox_options.add_argument("--enable-logging")
     firefox_options.add_argument("--log-level=0")
     firefox_options.add_argument("--v=99")
     firefox_options.add_argument("--single-process")
-    firefox_options.add_argument("--data-path=/tmp/data-path")
+    # firefox_options.add_argument("--data-path=/tmp/data-path")
     firefox_options.add_argument("--ignore-certificate-errors")
-    firefox_options.add_argument("--homedir=/tmp")
-    firefox_options.add_argument("--disk-cache-dir=/tmp/cache-dir")
+    # firefox_options.add_argument("--homedir=/tmp")
+    # firefox_options.add_argument("--disk-cache-dir=/tmp/cache-dir")
     headers = get_random_headers()
     firefox_options.add_argument(f"user-agent={headers['User-Agent']}")
     print(
