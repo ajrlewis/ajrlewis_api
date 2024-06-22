@@ -1,7 +1,9 @@
 from typing import Union
 from fastapi import APIRouter, HTTPException, Query
 from pydantic import BaseModel, Field
-from ..utils import web
+
+# from ..utils import web
+from utils import web
 
 
 class WebScraper(BaseModel):

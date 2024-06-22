@@ -1,15 +1,13 @@
 {
     "env": {
-        "PYTHONPATH": "api/"
+        "PYTHONPATH": "src/"
     },
-    "version": 2,
     "rewrites": [{
         "source": "/(.*)",
         "destination": "api/main.py"
     }],
     "functions": {
         "api/main.py": {
-            "memory": 128,
             "maxDuration": 60
         }
     }

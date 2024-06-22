@@ -1,6 +1,13 @@
+import sys
+
+sys.path.append("../src")
+
 from fastapi import FastAPI
-from .database import Base, engine
-from .routers import index, bitcoin, chat, data_analytics, forecast, image, web
+
+# from .database import Base, engine
+# from .routers import index, bitcoin, chat, data_analytics, forecast, image, web
+from database import Base, engine
+from routers import index, bitcoin, chat, data_analytics, forecast, image, web
 
 Base.metadata.create_all(bind=engine)
 

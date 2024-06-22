@@ -32,7 +32,9 @@
 
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
-from ..utils import chat
+
+# from ..utils import chat
+from utils import chat
 
 
 class ContextMessage(BaseModel):
