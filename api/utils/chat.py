@@ -52,11 +52,3 @@ def call_openai(
     except openai.APIConnectionError as e:
         print(f"API connection error: {e}")
     return content
-
-
-def main():
-    pass
-
-
-if __name__ == "__main__":
-    main()

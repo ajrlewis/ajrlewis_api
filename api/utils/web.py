@@ -181,17 +181,3 @@ def search_bing(query: str) -> tuple[str]:
     print(f"{__name__}.search_bing", "url = ", url)
     text, error = scrape_website_for_text(url)
     return text, error
-
-
-def main():
-    # url = "https://gameswift.io/"
-    # url = "https://www.coindesk.com/arc/outboundfeeds/rss/"
-    text, error = scrape_website_for_text(url)
-    # query = "who is the president of the us"
-    # text, error = search_bing(query)
-    print(f"{text = }")
-    print(f"{error = }")
-
-
-if __name__ == "__main__":
-    main()
