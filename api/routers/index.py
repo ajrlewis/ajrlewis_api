@@ -17,10 +17,10 @@ async def root():
     return {"message": "Hello World"}
 
 
-@router.get("/status")
+@router.get("/ping")
 async def status(db: Session = Depends(get_db)):
     try:
         _ = db.connection()
-        return {"database": "Online", "server": "Online"}
     except Exception as e:
-        return {"database": "Offline", "server": "Online"}
+        raise HTTPException(status_code=400, detail="Database unavailable")
+    return {"data": "Pong"}

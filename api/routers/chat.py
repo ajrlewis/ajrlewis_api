@@ -38,7 +38,7 @@ from ..utils import chat
 class ContextMessage(BaseModel):
     # id: int = Field(None, description="The id of the message.")
     role: str = Field(
-        None, description="The role of the message (system, user or assistant)."
+        None, description="The role of the message (e.g. system, user or assistant)."
     )
     content: str = Field(None, description="The content of the message.")
 

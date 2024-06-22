@@ -1,10 +1,10 @@
 # AJR Lewis API
 
-![My Project Logo](images/logo.png)
+![ARJ Lewis Logo](images/logo.png)
 
-See the docs:
+API endpoints for AJR Lewis tech solutions.
 
-    https://api.ajrlewis.com/docs
+See the docs: https://api.ajrlewis.com/docs
 
 ## License
 

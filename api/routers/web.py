@@ -1,7 +1,7 @@
 from typing import Union
 from fastapi import APIRouter, HTTPException, Query
 from pydantic import BaseModel, Field
-from ..utils import web_scraper
+from ..utils import web
 
 
 class WebScraper(BaseModel):
@@ -9,13 +9,13 @@ class WebScraper(BaseModel):
 
 
 router = APIRouter(
-    prefix="/web-scraper",
-    tags=["Web Scraper"],
+    prefix="/web",
+    tags=["Web"],
 )
 
 
-@router.get("/", response_model=WebScraper)
-async def root(
+@router.get("/scrape", response_model=WebScraper)
+async def scrape(
     url: str = Query(
         None,
         description="The URL to web scrape.",
@@ -25,11 +25,16 @@ async def root(
         description="The maximum number of words in the text content to return. Leave empty to return all words.",
     ),
 ) -> WebScraper:
-    """Retrieves the text content from a website URL using a web scraper."""
-    text, error = web_scraper.scrape_website_for_text(url)
+    """Scrapes the text content from a supplied website URL."""
+    text, error = web.scrape_website_for_text(url)
     if error:
         raise HTTPException(status_code=400, detail=error)
     if max_words_in_text:
         words = text.split(" ")
         text = " ".join(words[:max_words_in_text])
     return {"text": text}
+
+
+@router.get("/search")
+async def search():
+    return {"text": "Foo Bar"}

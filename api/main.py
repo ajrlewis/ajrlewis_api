@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from .database import Base, engine
-from .routers import index, chat, web_scraper
+from .routers import index, bitcoin, chat, data_analytics, forecast, image, web
 
 Base.metadata.create_all(bind=engine)
 
@@ -21,5 +21,9 @@ app = FastAPI()
 
 
 app.include_router(index.router)
+app.include_router(bitcoin.router)
 app.include_router(chat.router)
-app.include_router(web_scraper.router)
+app.include_router(data_analytics.router)
+app.include_router(forecast.router)
+app.include_router(image.router)
+app.include_router(web.router)
