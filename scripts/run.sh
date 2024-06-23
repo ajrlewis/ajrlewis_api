@@ -2,6 +2,6 @@
 
 source .env
 source venv/bin/activate
-cd api
-fastapi dev main.py
+# cd api
+fastapi dev api/main.py
 deactivate
