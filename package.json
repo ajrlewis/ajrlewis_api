@@ -1,5 +1,5 @@
 {
   "scripts": {
-    "build": "yum install firefox -y;tar -zxvf ./geckodriver-v0.34.0-linux64.tar.gz; ./geckodriver --version;"
+    "build": "yum install firefox;tar -zxvf ./geckodriver-v0.34.0-linux64.tar.gz; ./geckodriver --version;"
   }
 }
