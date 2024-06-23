@@ -134,7 +134,6 @@ def scrape_dynamic_website_for_text(url: str) -> tuple[str]:
     # driver = webdriver.Chrome(options=chrome_options)
 
     executable_path = f"{os.getcwd()}/geckodriver"
-    executable_path = r
     print(
         f"{__name__}.scrape_dynamic_website_for_text",
         "executable_path = ",
