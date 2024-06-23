@@ -134,6 +134,7 @@ def scrape_dynamic_website_for_text(url: str) -> tuple[str]:
     # driver = webdriver.Chrome(options=chrome_options)
 
     executable_path = f"{os.getcwd()}/geckodriver"
+    executable_path = r
     print(
         f"{__name__}.scrape_dynamic_website_for_text",
         "executable_path = ",
@@ -141,7 +142,12 @@ def scrape_dynamic_website_for_text(url: str) -> tuple[str]:
     )
 
     print("")
-    print(os.listdir(os.getcwd()))
+    # print(os.listdir(os.getcwd()))
+    import platform
+
+    print("os.name = ", os.name)
+    print("platform.system() = ", platform.system())
+    print("platform.release() = ", platform.release())
     print("")
     print("")
 
@@ -166,6 +172,7 @@ def scrape_dynamic_website_for_text(url: str) -> tuple[str]:
     # firefox_options.add_argument("--disk-cache-dir=/tmp/cache-dir")
     headers = get_random_headers()
     firefox_options.add_argument(f"user-agent={headers['User-Agent']}")
+    firefox_options.executable_path = os.getcwd()
     print(
         f"{__name__}.scrape_dynamic_website_for_text",
         "firefox_options = ",
