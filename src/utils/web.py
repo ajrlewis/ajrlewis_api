@@ -133,7 +133,14 @@ def scrape_dynamic_website_for_text(url: str) -> tuple[str]:
     # chrome_options.add_argument(f"user-agent={headers['User-Agent']}")
     # driver = webdriver.Chrome(options=chrome_options)
 
-    firefox_service = Service(f"{os.getcwd()}/firefox")
+    executable_path = f"{os.getcwd()}/firefox"
+    print(
+        f"{__name__}.scrape_dynamic_website_for_text",
+        "executable_path = ",
+        executable_path,
+    )
+    print(os.listdir(os.getcwd()))
+    firefox_service = Service(executable_path)
 
     firefox_options = webdriver.FirefoxOptions()
     firefox_options.add_argument("--headless")
