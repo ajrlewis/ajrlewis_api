@@ -1,3 +1,4 @@
+import os
 import random
 from urllib.parse import urlparse
 import urllib3
@@ -5,6 +6,7 @@ import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.firefox.service import Service
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -131,13 +133,15 @@ def scrape_dynamic_website_for_text(url: str) -> tuple[str]:
     # chrome_options.add_argument(f"user-agent={headers['User-Agent']}")
     # driver = webdriver.Chrome(options=chrome_options)
 
+    firefox_service = Service(f"{os.getcwd()}/firefox")
+
     firefox_options = webdriver.FirefoxOptions()
     firefox_options.add_argument("--headless")
     firefox_options.add_argument("--headless")
     firefox_options.add_argument("--no-sandbox")
     firefox_options.add_argument("--disable-gpu")
     firefox_options.add_argument("--window-size=1280x1696")
-    # firefox_options.add_argument("--user-data-dir=/tmp/user-data")
+    firefox_options.add_argument("--user-data-dir=/tmp/user-data")
     firefox_options.add_argument("--hide-scrollbars")
     firefox_options.add_argument("--enable-logging")
     firefox_options.add_argument("--log-level=0")
@@ -146,6 +150,7 @@ def scrape_dynamic_website_for_text(url: str) -> tuple[str]:
     # firefox_options.add_argument("--data-path=/tmp/data-path")
     firefox_options.add_argument("--ignore-certificate-errors")
     # firefox_options.add_argument("--homedir=/tmp")
+    # firefox_options.add_argument("--binary_location=../drivers/")
     # firefox_options.add_argument("--disk-cache-dir=/tmp/cache-dir")
     headers = get_random_headers()
     firefox_options.add_argument(f"user-agent={headers['User-Agent']}")
@@ -156,7 +161,10 @@ def scrape_dynamic_website_for_text(url: str) -> tuple[str]:
     )
 
     try:
-        driver = webdriver.Firefox(options=firefox_options)
+        driver = webdriver.Firefox(
+            service=firefox_service,
+            options=firefox_options,
+        )
     except Exception as e:
         print(f"{__name__}.scrape_dynamic_website_for_text", "e = ", e)
         return "", f"{e}"
