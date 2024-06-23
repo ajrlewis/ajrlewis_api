@@ -162,7 +162,7 @@ def scrape_dynamic_website_for_text(url: str) -> tuple[str]:
     # firefox_options.add_argument("--data-path=/tmp/data-path")
     firefox_options.add_argument("--ignore-certificate-errors")
     # firefox_options.add_argument("--homedir=/tmp")
-    # firefox_options.add_argument("--binary_location=../drivers/")
+    firefox_options.add_argument(f"--binary_location={os.getcwd()}")
     # firefox_options.add_argument("--disk-cache-dir=/tmp/cache-dir")
     headers = get_random_headers()
     firefox_options.add_argument(f"user-agent={headers['User-Agent']}")
