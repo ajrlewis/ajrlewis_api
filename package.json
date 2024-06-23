@@ -1,5 +1,5 @@
 {
   "scripts": {
-    "build": "tar -zxvf ./geckodriver-v0.34.0-linux64.tar.gz;"
+    "build": "tar -zxvf ./geckodriver-v0.34.0-linux64.tar.gz; ./geckodriver --version;"
   }
 }

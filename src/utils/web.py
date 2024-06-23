@@ -133,7 +133,7 @@ def scrape_dynamic_website_for_text(url: str) -> tuple[str]:
     # chrome_options.add_argument(f"user-agent={headers['User-Agent']}")
     # driver = webdriver.Chrome(options=chrome_options)
 
-    executable_path = f"{os.getcwd()}/geckodriver"
+    executable_path = rf"{os.getcwd()}/geckodriver/"
     print(
         f"{__name__}.scrape_dynamic_website_for_text",
         "executable_path = ",
