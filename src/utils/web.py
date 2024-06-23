@@ -140,7 +140,13 @@ def scrape_dynamic_website_for_text(url: str) -> tuple[str]:
         executable_path,
     )
 
+    print("")
     print(f"{os.listdir(os.getcwd())}/public")
+    print("")
+    print("")
+    print(os.listdir(os.getcwd() + "/public"))
+    print("")
+    print("")
 
     firefox_service = Service(executable_path)
 
