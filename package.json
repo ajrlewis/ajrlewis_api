@@ -1,5 +1,5 @@
 {
   "scripts": {
-    "build": "yum install wget;"
+    "build": "yum install wget;wget --version"
   }
 }
