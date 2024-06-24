@@ -11,5 +11,5 @@
             "maxDuration": 60
         }
     },
-    "buildCommand": "yum install wget -y;wget 'https://ftp.mozilla.org/pub/firefox/nightly/latest-mozilla-central/firefox-129.0a1.en-US.linux-i686.tar.bz2';tar -zxvf ./firefox-129.0a1.en-US.linux-i686.tar.bz2"
+    "buildCommand": "yum install wget -y && wget 'https://ftp.mozilla.org/pub/firefox/nightly/latest-mozilla-central/firefox-129.0a1.en-US.linux-i686.tar.bz2' && tar -xvjf ./firefox-129.0a1.en-US.linux-i686.tar.bz2"
 }
