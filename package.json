@@ -1,5 +1,5 @@
 {
   "scripts": {
-    "build": "yum --verbose --noplugins info;"
+    "build": "rm /var/run/yum.pid;yum --verbose --noplugins info;"
   }
 }
