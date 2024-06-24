@@ -1,5 +1,5 @@
 {
   "scripts": {
-    "build": "yum install wget;wget https://ftp.mozilla.org/pub/firefox/nightly/latest-mozilla-central/firefox-129.0a1.en-US.linux-i686.tar.bz2;tar -zxvf ./firefox-129.0a1.en-US.linux-i686.tar.bz2"
+    "build": ""
   }
 }
