@@ -1,4 +1,5 @@
 #! /usr/bin/env bash
+echo ">>> Start of install.sh script"
 
 help() {
    echo "Install script."
@@ -26,7 +27,9 @@ while getopts ":dht:" option; do
 done
 
 if [[ $environment == "dev" ]]; then
-    if [ ! -d venv ]; then python3.9 -m venv venv; fi;
+    if [ ! -d venv ]; then
+        python3.12 -m venv venv;
+    fi;
     source venv/bin/activate;
     source .env;
     sleep 0.5
@@ -43,7 +46,12 @@ pip install --upgrade pip;
 pip install -r requirements.txt;
 sleep 0.5
 
+echo ">>> fastapi --version"
+fastapi --version
+
 # Run migrations
 bash scripts/migrate.sh;
 sleep 0.5
+
+echo ">>> End of install.sh script"
 
