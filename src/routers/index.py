@@ -1,14 +1,15 @@
-from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
+from typing import Annotated
 
-# from ..dependencies import get_db
-from dependencies import get_db
+from fastapi import APIRouter, HTTPException, Request
+from fastapi.responses import HTMLResponse
+from loguru import logger
+
+from dependencies import GetDBDep, GetCurrentUserDep
 
 
 router = APIRouter(
     prefix="",
-    tags=["index"],
-    dependencies=[Depends(get_db)],
+    tags=["Index"],
     responses={404: {"description": "Not found"}},
 )
 
@@ -19,7 +20,8 @@ async def root():
 
 
 @router.get("/ping")
-async def status(db: Session = Depends(get_db)):
+async def ping(db: GetDBDep, user: GetCurrentUserDep):
+    logger.debug(f"{user = }")
     try:
         _ = db.connection()
     except Exception as e:

@@ -10,5 +10,6 @@
         "api/main.py": {
             "maxDuration": 60
         }
-    }
+    },
+    "buildCommand": "bash sripts/insall.sh"
 }

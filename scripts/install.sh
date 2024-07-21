@@ -1,9 +1,45 @@
-#!/usr/bin/env bash
+#! /usr/bin/env bash
 
-PYTHON_VERSION=3.9
-if [ -d venv ]; then rm -Rf venv; fi
-python${PYTHON_VERSION} -m venv venv
-source venv/bin/activate
-pip install --upgrade pip
-pip install -r requirements.txt
-deactivate
+help() {
+   echo "Install script."
+   echo
+   echo "Syntax: install.sh [-d|h]"
+   echo "options:"
+   echo "d     Enable development mode."
+   echo "h     Print this help."
+   echo
+}
+
+environment="prod";
+
+while getopts ":dht:" option; do
+    case $option in
+        d) # set development mode
+            environment="dev";;
+        h) # display help
+            help;
+            exit;;
+        \?) # Invalid option
+            echo "Error: Invalid option"
+            exit;;
+   esac
+done
+
+if [[ $environment == "dev" ]]; then
+    if [ ! -d venv ]; then python3.9 -m venv venv; fi;
+    source venv/bin/activate;
+    source .env;
+else
+    if [ ! -d public ]; then mkdir public; touch public/public.txt; fi;
+fi
+sleep 0.5
+
+# Install dependencies
+pip install --upgrade pip;
+pip install -r requirements.txt;
+sleep 0.5
+
+# Run migrations
+bash scripts/migrate.sh;
+sleep 0.5
+

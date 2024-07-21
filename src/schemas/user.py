@@ -1,18 +1,19 @@
-from typing import Union
 from pydantic import BaseModel
 
 
 class UserBase(BaseModel):
-    name: str
-    email: str
+    username: str
 
 
 class UserCreate(UserBase):
-    pass
+    password: str
 
 
 class User(UserBase):
-    id: int
+    user_id: int
+    password_hash: str
+    api_key: str
+    credits: int
 
     class Config:
         from_attributes = True

@@ -1,42 +1,31 @@
-from typing import Union
+from typing import Annotated, Union
+
 from fastapi import APIRouter, HTTPException, Query
 from pydantic import BaseModel, Field
+from webkit import webkit
 
-# from ..utils import web
-from utils import web
-
-
-class WebScraper(BaseModel):
-    text: str = Field(None, description="The text content of the URL.")
+from schemas.website import Website
 
 
-router = APIRouter(
-    prefix="/web",
-    tags=["Web"],
-)
+router = APIRouter(prefix="/web", tags=["Web"])
 
 
-@router.get("/scrape", response_model=WebScraper)
+@router.get("/scrape", response_model=Website)
 async def scrape(
-    url: str = Query(
-        None,
-        description="The URL to web scrape.",
-    ),
-    max_words_in_text: int = Query(
-        None,
-        description="The maximum number of words in the text content to return. Leave empty to return all words.",
-    ),
-) -> WebScraper:
+    url: Annotated[str, Query(description="The URL to web scrape.")],
+    max_words_in_text: Annotated[
+        Union[int, None],
+        Query(
+            title="test",
+            description="The maximum number of words in the text content to return. Leave empty to return all words.",
+        ),
+    ] = None,
+):
     """Scrapes the text content from a supplied website URL."""
-    text, error = web.scrape_website_for_text(url)
-    if error:
-        raise HTTPException(status_code=400, detail=error)
+    data = webkit.scrape_website_for_text(url)
+    if data["error"]:
+        raise HTTPException(status_code=400, detail=data["error"])
     if max_words_in_text:
-        words = text.split(" ")
-        text = " ".join(words[:max_words_in_text])
-    return {"text": text}
-
-
-@router.get("/search")
-async def search():
-    return {"text": "Foo Bar"}
+        words = data["text"].split(" ")
+        data["text"] = " ".join(words[:max_words_in_text])
+    return data
