@@ -1,3 +1,5 @@
+from loguru import logger
+
 logger.debug("Start of main.py")
 
 from fastapi import FastAPI
