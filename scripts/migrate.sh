@@ -89,24 +89,24 @@ migrate() {
 
     status=$(alembic revision --autogenerate -m "$1")
     echo $status
-    echo "alembic upgrade head";
+    echo "> alembic upgrade head";
     alembic upgrade head
 }
 
 if [ -d venv ]; then
-    echo "source venv/bin/activate;";
+    echo "> source venv/bin/activate;";
     source venv/bin/activate;
 fi
 
 if [ -f .env ]; then
-    echo "source .env;";
+    echo "> source .env;";
     source .env;
 fi
 
 if [ -d public ]; then
-    echo "mkdir public;"
+    echo "> mkdir public;"
     mkdir public;
-    echo "touch public/public.txt;"
+    echo "> touch public/public.txt;"
     touch public/public.txt;
 fi
 

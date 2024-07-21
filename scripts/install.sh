@@ -33,8 +33,8 @@ if [[ $environment == "dev" ]]; then
 fi;
 
 if [ ! -d public ]; then
-        mkdir public; 
-        touch public/public.txt;
+    mkdir public; 
+    touch public/public.txt;
 fi;
 sleep 0.5
 
