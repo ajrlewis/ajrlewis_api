@@ -6,6 +6,7 @@ from routers import index, user, web
 # from database import Base, engine
 # from models.user import User
 # Base.metadata.create_all(bind=engine)
+logger.debug("Creating application ...")
 
 app = FastAPI()
 # app = FastAPI(title=settings.PROJECT_NAME, openapi_url=f"{settings.API_V1_STR}/openapi.json")
@@ -19,6 +20,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+logger.debug("Assigning routes ...")
 app.include_router(index.router)
 app.include_router(user.router)
 # app.include_router(bitcoin.router)
@@ -29,3 +32,5 @@ app.include_router(user.router)
 # app.include_router(nostr.router)
 # app.include_router(pdf.router)
 app.include_router(web.router)
+
+logger.debug("Finished and ready!")
