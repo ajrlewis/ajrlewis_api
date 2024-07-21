@@ -29,9 +29,13 @@ if [[ $environment == "dev" ]]; then
     if [ ! -d venv ]; then python3.9 -m venv venv; fi;
     source venv/bin/activate;
     source .env;
-else
-    if [ ! -d public ]; then mkdir public; touch public/public.txt; fi;
-fi
+    sleep 0.5
+fi;
+
+if [ ! -d public ]; then
+        mkdir public; 
+        touch public/public.txt;
+fi;
 sleep 0.5
 
 # Install dependencies

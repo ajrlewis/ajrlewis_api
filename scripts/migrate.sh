@@ -85,6 +85,7 @@ migrate() {
     echo $PWD
     echo $PWD
     echo $(ls)
+    echo $(ls ../)
 
     status=$(alembic revision --autogenerate -m "$1")
     echo $status
