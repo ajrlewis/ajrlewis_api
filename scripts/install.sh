@@ -46,6 +46,11 @@ pip install --upgrade pip;
 pip install -r requirements.txt;
 sleep 0.5
 
+echo ">>> python --version"
+python --version
+echo ">>> which python"
+which python
+
 echo ">>> fastapi --version"
 fastapi --version
 
