@@ -82,17 +82,32 @@ EOF
 
 migrate() {
     echo $PWD
+    echo $PWD
+    echo $PWD
+    echo $(ls)
+
     status=$(alembic revision --autogenerate -m "$1")
     echo $status
     echo "alembic upgrade head";
     alembic upgrade head
 }
 
-if [ -d venv ]; then source venv/bin/activate; fi
+if [ -d venv ]; then
+    echo "source venv/bin/activate;";
+    source venv/bin/activate;
+fi
 
-if [ -f .env ]; then source .env; fi
+if [ -f .env ]; then
+    echo "source .env;";
+    source .env;
+fi
 
-if [ -d public ]; then mkdir public; touch public/public.txt; fi
+if [ -d public ]; then
+    echo "mkdir public;"
+    mkdir public;
+    echo "touch public/public.txt;"
+    touch public/public.txt;
+fi
 
 cd src;
 

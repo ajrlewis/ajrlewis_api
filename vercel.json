@@ -11,5 +11,5 @@
             "maxDuration": 60
         }
     },
-    "buildCommand": "bash scripts/install.sh"
+    "installCommand": "bash scripts/install.sh;"
 }
