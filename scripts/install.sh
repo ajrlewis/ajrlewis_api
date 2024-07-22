@@ -35,8 +35,12 @@ if [[ $environment == "dev" ]]; then
     sleep 0.5
 fi;
 
-if [ ! -d public ]; then
+echo "[ ! -d public ]"
+
+if [ ! -d "public" ]; then
+    echo ">>> mkdir public;"
     mkdir public; 
+    echo ">>> touch public/public.txt;"
     touch public/public.txt;
 fi;
 sleep 0.5
@@ -53,8 +57,10 @@ python3 --version
 echo ">>> which python3"
 which python3
 
-echo ">>> fastapi --version"
-fastapi --version
+echo ">>> which fastapi"
+which fastapi
+echo python3 -c ">>> import fastapi; print(f'{fastapi.__version__ = }')"
+python3 -c "import fastapi; print(f'{fastapi.__version__ = }')"
 
 # Run migrations
 bash scripts/migrate.sh;
