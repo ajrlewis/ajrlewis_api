@@ -42,14 +42,12 @@ fi;
 sleep 0.5
 
 # Install dependencies
-pip install --upgrade pip;
-pip install -r requirements.txt;
+echo ">>> pip3 --version"
+pip3 --version
+pip3 install --upgrade pip;
+pip3 install -r requirements.txt;
 sleep 0.5
 
-echo ">>> python --version"
-python --version
-echo ">>> which python"
-which python
 echo ">>> python3 --version"
 python3 --version
 echo ">>> which python3"
