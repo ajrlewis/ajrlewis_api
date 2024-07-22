@@ -1,5 +1,7 @@
 #! /usr/bin/env bash
 
+export alembic=/python312/bin/alembic
+
 init() {
     echo $PWD
     echo "alembic init alembic";
