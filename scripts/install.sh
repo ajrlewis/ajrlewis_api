@@ -62,14 +62,12 @@ which fastapi
 echo python3 -c ">>> import fastapi; print(f'{fastapi.__version__ = }')"
 python3 -c "import fastapi; print(f'{fastapi.__version__ = }')"
 
-echo ">>> ls /usr/bin"
-ls /usr/bin
 echo ">>> ls /usr/local/bin"
 ls /usr/local/bin
 echo ">>> ls /python312"
 ls /python312
-echo ">>> ls /python312/lib"
-ls /python312/lib
+echo ">>> ls /python312/bin"
+ls /python312/bin
 
 # Run migrations
 bash scripts/migrate.sh;
