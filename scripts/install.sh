@@ -50,6 +50,10 @@ echo ">>> python --version"
 python --version
 echo ">>> which python"
 which python
+echo ">>> python3 --version"
+python3 --version
+echo ">>> which python3"
+which python3
 
 echo ">>> fastapi --version"
 fastapi --version
