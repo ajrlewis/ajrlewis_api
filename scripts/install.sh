@@ -52,23 +52,6 @@ pip3 install --upgrade pip;
 pip3 install -r requirements.txt;
 sleep 0.5
 
-echo ">>> python3 --version"
-python3 --version
-echo ">>> which python3"
-which python3
-
-echo ">>> which fastapi"
-which fastapi
-echo python3 -c ">>> import fastapi; print(f'{fastapi.__version__ = }')"
-python3 -c "import fastapi; print(f'{fastapi.__version__ = }')"
-
-echo ">>> ls /usr/local/bin"
-ls /usr/local/bin
-echo ">>> ls /python312"
-ls /python312
-echo ">>> ls /python312/bin"
-ls /python312/bin
-
 # Run migrations
 bash scripts/migrate.sh;
 sleep 0.5

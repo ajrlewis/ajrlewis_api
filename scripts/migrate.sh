@@ -1,6 +1,7 @@
 #! /usr/bin/env bash
 
 export PATH=${PATH}:/python312/bin/
+export PYTHONPATH=${PYTHONPATH}:src/:./
 
 init() {
     echo $PWD
@@ -113,6 +114,7 @@ if [ -d public ]; then
 fi
 
 cd src;
+export PYTHONPATH=${PYTHONPATH}:./
 
 if [ ! -d alembic ]; then
     init
