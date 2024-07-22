@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-export alembic=/python312/bin/alembic
+export PATH=${PATH}:/python312/bin/
 
 init() {
     echo $PWD
