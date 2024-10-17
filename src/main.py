@@ -1,11 +1,10 @@
-from loguru import logger
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from loguru import logger
 
 # from routers import index, user, web
-from routers import chat, index, user
+# from routers import index, user, web
+from routers import chat, index
 
 # from database import Base, engine
 # from models.user import User
@@ -27,7 +26,7 @@ app.add_middleware(
 
 logger.debug("Assigning routes ...")
 app.include_router(index.router)
-app.include_router(user.router)
+# app.include_router(user.router)
 app.include_router(chat.router)
 # app.include_router(bitcoin.router)
 # app.include_router(chat.router)
@@ -37,12 +36,3 @@ app.include_router(chat.router)
 # app.include_router(nostr.router)
 # app.include_router(pdf.router)
 # app.include_router(web.router)
-{
-    "full_name": "The full name of card.",
-    "job_title": "The job title of the card.",
-    "company": "The name of the company.",
-    "phone_number": "The phone number.",
-    "email": "The email address.",
-    "URL": "The website URL.",
-    "address": "The location/address.",
-}
