@@ -12,3 +12,4 @@ anthropic==0.29.0
 loguru==0.7.2
 
 git+https://github.com/ajrlewis/webkit.git
+git+https://github.com/ajrlewis/huggingkit.git
