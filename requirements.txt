@@ -11,5 +11,7 @@ anthropic==0.29.0
 
 loguru==0.7.2
 
+pydantic-settings==2.6.0
+
 git+https://github.com/ajrlewis/webkit.git
 git+https://github.com/ajrlewis/huggingkit.git

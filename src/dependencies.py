@@ -2,16 +2,16 @@ from typing import Annotated
 
 from fastapi import Depends, Header, HTTPException, UploadFile, File
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
-from loguru import logger
 
 # from imagekit import imagekit
+from loguru import logger
 
-import crud.user as user_crud
+
+import crud.api_user as api_user_crud
 from database import SessionLocal
-import models.user as user_model
+from models.api_user import APIUser
 
 GetCredentialsDep = Annotated[HTTPAuthorizationCredentials, Depends(HTTPBearer())]
-
 
 # async def load_image(file: UploadFile = File(...)):
 #     logger.debug(f"{file.content_type = }")
@@ -20,7 +20,6 @@ GetCredentialsDep = Annotated[HTTPAuthorizationCredentials, Depends(HTTPBearer()
 #     logger.debug(f"{file = }")
 #     img = imagekit.load(await file.read())
 #     return img
-
 
 # LoadImageDep = Annotated[imagekit.Img, Depends(load_image)]
 
@@ -37,10 +36,8 @@ GetDBDep = Annotated[SessionLocal, Depends(get_db)]
 
 
 async def current_user(db: GetDBDep, credentials: GetCredentialsDep):
-    logger.debug(f"{credentials = }")
     api_key = credentials.credentials
-    logger.debug(f"{api_key = }")
-    db_user = user_crud.get_user_by_api_key(db, api_key)
+    db_user = api_user_crud.get_user_by_api_key(db, api_key)
     logger.debug(f"{db_user = }")
     if db_user:
         return db_user
@@ -48,4 +45,4 @@ async def current_user(db: GetDBDep, credentials: GetCredentialsDep):
         raise HTTPException(status_code=400, detail="Unauthorized")
 
 
-GetCurrentUserDep = Annotated[user_model.User, Depends(current_user)]
+GetCurrentUserDep = Annotated[APIUser, Depends(current_user)]

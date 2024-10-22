@@ -3,16 +3,14 @@ from sqlalchemy.orm import relationship
 from database import Base
 
 
-class User(Base):
-    __tablename__ = "user"
+class APIUser(Base):
+    __tablename__ = "api_user"
 
     user_id = Column(Integer, primary_key=True)
     username = Column(String)
     email = Column(String)
     password_hash = Column(String)
+    is_admin = Column(Boolean, default=False)
     api_key = Column(String)
-    credits = Column(Integer, default=5000)
-    plan = Column(String, default="Free")
-
-    def __repr__(self):
-        return f"<User {self.user_id}>"
+    # api_credit_balance = Column(Integer, default=42069)
+    # plan = Column(String, default="Free")

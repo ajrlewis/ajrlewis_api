@@ -1,19 +1,22 @@
 from pydantic import BaseModel
 
 
-class UserBase(BaseModel):
+class APIUserBase(BaseModel):
     username: str
+    email: str
 
 
-class UserCreate(UserBase):
+class APIUserCreate(APIUserBase):
     password: str
 
 
-class User(UserBase):
+class APIUser(APIUserBase):
     user_id: int
     password_hash: str
+    is_admin: bool
     api_key: str
-    credits: int
+    # credits: int
+    # plan: str
 
     class Config:
         from_attributes = True

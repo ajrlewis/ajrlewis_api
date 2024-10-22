@@ -9,10 +9,28 @@ from routers import chat, index
 # from database import Base, engine
 # from models.user import User
 # Base.metadata.create_all(bind=engine)
+from config import settings
 
 logger.debug("Creating application ...")
-app = FastAPI()
-# app = FastAPI(title=settings.PROJECT_NAME, openapi_url=f"{settings.API_V1_STR}/openapi.json")
+app = FastAPI(
+    docs_url="/docs",
+    redoc_url=None,
+    title=settings.PROJECT_NAME,
+    description=settings.PROJECT_DESCRIPTION,
+    summary=settings.PROJECT_SUMMARY,
+    version=settings.PROJECT_VERSION,
+    # terms_of_service="http://example.com/terms/",
+    contact={
+        # "name": "Deadpoolio the Amazing",
+        # "url": "http://x-force.example.com/contact/",
+        # "email": "dp@x-force.example.com",
+    },
+    license_info={
+        # "name": "Apache 2.0",
+        # "url": "https://www.apache.org/licenses/LICENSE-2.0.html",
+    },
+)
+
 
 logger.debug("Assigning CORS middleware..")
 origins = ["*"]
