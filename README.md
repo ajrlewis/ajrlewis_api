@@ -88,6 +88,24 @@ curl -X 'POST' \
 }
 ```
 
+## API Flow Examples
+
+### Business Card Image Read and Contact Extraction
+
+Step 1. (img) -> api.ajrlewis.com/image/extract-text -> (text)
+
+Step 2. (text, data_points) -> api.ajrlewis.com/chat/extract -> (data)
+
+```bash
+'{
+    "full_name": "the ...",
+    "company": "the ...",
+    "job_title": "the ...",
+    "phone_number": "the ...",
+    "email": "the ...",
+    "social": "the ..."
+}'
+```
 
 ## License
 
