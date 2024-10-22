@@ -11,7 +11,7 @@ class APIUserCreate(APIUserBase):
 
 
 class APIUser(APIUserBase):
-    user_id: int
+    api_user_id: int
     password_hash: str
     is_admin: bool
     api_key: str

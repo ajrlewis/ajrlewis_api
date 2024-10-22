@@ -40,13 +40,6 @@ router = APIRouter(
 #     return message
 
 
-# @router.post("/ask/")
-# async def ask(question: str, system: str = "") -> dict[str, str]:
-#     """Returns the response to q question."""
-#     # content = chat.call_gpt_model(context_messages)
-#     return {"answer": "foobar"}
-
-
 from dependencies import GetDBDep, GetCurrentUserDep
 
 
