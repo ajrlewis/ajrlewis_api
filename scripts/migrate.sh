@@ -89,23 +89,23 @@ migrate() {
     echo $PWD
     echo $(ls)
     echo $(ls ../)
-
     status=$(alembic revision --autogenerate -m "$1")
     echo $status
     echo "> alembic upgrade head";
     alembic upgrade head
 }
 
+# if development { ...  }
 if [ -d venv ]; then
     echo "> source venv/bin/activate;";
     source venv/bin/activate;
 fi
-
 if [ -f .env ]; then
     echo "> source .env;";
     source .env;
 fi
 
+#else 
 if [ -d public ]; then
     echo "> mkdir public;"
     mkdir public;
@@ -115,6 +115,9 @@ fi
 
 cd src;
 export PYTHONPATH=${PYTHONPATH}:./
+
+rm -rf alembic;
+sleep 0.5
 
 if [ ! -d alembic ]; then
     init
