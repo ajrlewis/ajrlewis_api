@@ -37,10 +37,10 @@ GetDBDep = Annotated[SessionLocal, Depends(get_db)]
 
 async def current_user(db: GetDBDep, credentials: GetCredentialsDep):
     api_key = credentials.credentials
-    db_user = api_user_crud.get_user_by_api_key(db, api_key)
-    logger.debug(f"{db_user = }")
-    if db_user:
-        return db_user
+    api_user = api_user_crud.get_api_user_by_api_key(db, api_key)
+    logger.debug(f"{api_user = }")
+    if api_user:
+        return api_user
     else:
         raise HTTPException(status_code=400, detail="Unauthorized")
 

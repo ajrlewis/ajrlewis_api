@@ -104,8 +104,7 @@ if [ -f .env ]; then
     echo "> source .env;";
     source .env;
 fi
-
-#else 
+# else { ... }
 if [ -d public ]; then
     echo "> mkdir public;"
     mkdir public;
@@ -115,9 +114,6 @@ fi
 
 cd src;
 export PYTHONPATH=${PYTHONPATH}:./
-
-rm -rf alembic;
-sleep 0.5
 
 if [ ! -d alembic ]; then
     init
