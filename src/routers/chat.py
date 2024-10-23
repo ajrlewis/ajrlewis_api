@@ -5,6 +5,7 @@ from huggingkit import chat, client
 from loguru import logger
 from pydantic import BaseModel, Field
 
+from dependencies import GetDBDep, GetCurrentUserDep
 
 hf_client = client.get_client(repo_id="mistralai/Mixtral-8x7B-Instruct-v0.1")
 
@@ -40,9 +41,6 @@ router = APIRouter(
 #     return message
 
 
-from dependencies import GetDBDep, GetCurrentUserDep
-
-
 @router.post("/extract/")
 async def extract(
     db: GetDBDep, user: GetCurrentUserDep, chat_extract_input: ChatExtractInput
@@ -60,8 +58,8 @@ async def extract(
     return data
 
 
-@router.post("/ask/")
-async def ask(db: GetDBDep, user: GetCurrentUserDep) -> dict[str, str]:
-    """Returns the"""
-    data = {"foo": "bar"}
-    return data
+# @router.post("/ask/")
+# async def ask(db: GetDBDep, user: GetCurrentUserDep) -> dict[str, str]:
+#     """Returns the"""
+#     data = {"foo": "bar"}
+#     return data

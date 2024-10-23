@@ -6,7 +6,6 @@ from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 # from imagekit import imagekit
 from loguru import logger
 
-
 import crud.api_user as api_user_crud
 from database import SessionLocal
 from models.api_user import APIUser

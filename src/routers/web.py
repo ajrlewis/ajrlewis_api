@@ -1,31 +1,36 @@
 from typing import Annotated, Union
 
 from fastapi import APIRouter, HTTPException, Query
+from loguru import logger
 from pydantic import BaseModel, Field
-from webkit import webkit
+from webkit import scrape as webkit_scrape, search as webkit_search
 
-from schemas.website import Website
+from dependencies import GetDBDep, GetCurrentUserDep
+
+
+class WebScrapeInput(BaseModel):
+    url: str = Field("ajrlewis.com", description="The URL to web scrape.")
 
 
 router = APIRouter(prefix="/web", tags=["Web"])
 
 
-@router.get("/scrape", response_model=Website)
+@router.post("/scrape")
 async def scrape(
-    url: Annotated[str, Query(description="The URL to web scrape.")],
-    max_words_in_text: Annotated[
-        Union[int, None],
-        Query(
-            title="test",
-            description="The maximum number of words in the text content to return. Leave empty to return all words.",
-        ),
-    ] = None,
-):
+    db: GetDBDep, user: GetCurrentUserDep, web_scrape_input: WebScrapeInput
+) -> dict:
     """Scrapes the text content from a supplied website URL."""
-    data = webkit.scrape_website_for_text(url)
-    if data["error"]:
-        raise HTTPException(status_code=400, detail=data["error"])
-    if max_words_in_text:
-        words = data["text"].split(" ")
-        data["text"] = " ".join(words[:max_words_in_text])
+    url = web_scrape_input.url
+    logger.debug(f"{url = }")
+    data = webkit_scrape.text_from_url(url)
+    logger.debug(f"{data = }")
     return data
+
+
+# @router.get("/search")
+# async def search():
+#     """Scrapes the internet for a given search query."""
+#     data = search(text)
+#     if data["error"]:
+#         raise HTTPException(status_code=400, detail=data["error"])
+#     return data

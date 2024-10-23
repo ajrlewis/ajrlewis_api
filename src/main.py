@@ -4,7 +4,7 @@ from loguru import logger
 
 # from routers import index, user, web
 # from routers import index, user, web
-from routers import chat, index
+from routers import chat, index, web
 
 # from database import Base, engine
 # from models.user import User
@@ -15,6 +15,8 @@ logger.debug("Creating application ...")
 app = FastAPI(
     docs_url="/docs",
     redoc_url=None,
+    # docs_url=None,
+    # redoc_url="/docs",
     title=settings.PROJECT_NAME,
     description=settings.PROJECT_DESCRIPTION,
     summary=settings.PROJECT_SUMMARY,
@@ -26,8 +28,8 @@ app = FastAPI(
         # "email": "dp@x-force.example.com",
     },
     license_info={
-        # "name": "Apache 2.0",
-        # "url": "https://www.apache.org/licenses/LICENSE-2.0.html",
+        "name": settings.PROJECT_LICENSE,
+        "url": settings.PROJECT_LICENSE_URL,
     },
 )
 
@@ -53,4 +55,4 @@ app.include_router(chat.router)
 # app.include_router(image.router)
 # app.include_router(nostr.router)
 # app.include_router(pdf.router)
-# app.include_router(web.router)
+app.include_router(web.router)
