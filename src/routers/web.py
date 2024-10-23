@@ -22,8 +22,9 @@ async def scrape(
     """Scrapes the text content from a supplied website URL."""
     url = web_scrape_input.url
     logger.debug(f"{url = }")
-    data = webkit_scrape.text_from_url(url)
-    logger.debug(f"{data = }")
+    # data = webkit_scrape.text_from_url(url)
+    # logger.debug(f"{data = }")
+    data = {"foo": "bar"}
     return data
 
 
