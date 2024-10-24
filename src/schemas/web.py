@@ -20,3 +20,8 @@ class Web(BaseModel):
 
 class WebScrapeInput(BaseModel):
     url: str = Field("ajrlewis.com", description="The URL to web scrape.")
+
+
+class WebSearchInput(BaseModel):
+    keywords: str
+    max_results: int
