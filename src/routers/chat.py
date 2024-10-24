@@ -53,11 +53,9 @@ async def extract(
     logger.debug(f"{message = }")
     content = message["content"]
     logger.debug(f"{content = }")
-    try:
-        data = json.loads(content)
-    except Exception as e:
-        logger.error(f"{e = }")
-        data = {}
+    cleaned_content = content.replace("\\", "")
+    logger.debug(f"{cleaned_content = }")
+    data = json.loads(cleaned_content)
     logger.debug(f"{data = }")
     return data
 
