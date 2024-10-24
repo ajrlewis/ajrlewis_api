@@ -26,7 +26,7 @@ async def scrape(
 @router.post("/search")
 async def search(
     db: GetDBDep, user: GetCurrentUserDep, web_search_input: WebSearchInput
-) -> dict:
+) -> list[dict]:
     """Searches the internet for a given"""
     keywords = web_search_input.keywords
     max_results = web_search_input.max_results
@@ -35,4 +35,4 @@ async def search(
         keywords=keywords, max_results=max_results
     )
     logger.debug(f"{results = }")
-    return {"foo": "bar"}
+    return results
