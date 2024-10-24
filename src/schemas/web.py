@@ -25,3 +25,14 @@ class WebScrapeInput(BaseModel):
 class WebSearchInput(BaseModel):
     keywords: str
     max_results: int
+
+
+class WebSearchResult(BaseModel):
+    title: str
+    href: str
+    body: str
+
+
+WebSearchResults = list[WebSearchResult]
+
+WebSearchOutput = WebSearchResults

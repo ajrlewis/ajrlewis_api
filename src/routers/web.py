@@ -5,7 +5,7 @@ from loguru import logger
 import webkit
 
 from dependencies import GetDBDep, GetCurrentUserDep
-from schemas.web import Web, WebScrapeInput, WebSearchInput
+from schemas.web import Web, WebScrapeInput, WebSearchInput, WebSearchOutput
 
 
 router = APIRouter(prefix="/web", tags=["Web"])
@@ -26,7 +26,7 @@ async def scrape(
 @router.post("/search")
 async def search(
     db: GetDBDep, user: GetCurrentUserDep, web_search_input: WebSearchInput
-) -> list[dict]:
+) -> WebSearchOutput:
     """Searches the internet for a given"""
     keywords = web_search_input.keywords
     max_results = web_search_input.max_results
