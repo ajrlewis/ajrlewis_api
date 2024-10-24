@@ -5,7 +5,7 @@ from pydantic import BaseModel, Field
 
 
 class Web(BaseModel):
-    website_id: int
+    # website_id: int
     url: str
     sanitized_url: str
     redirected_url: Union[str, None] = None
