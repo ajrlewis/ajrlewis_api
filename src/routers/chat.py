@@ -41,7 +41,7 @@ router = APIRouter(
 #     return message
 
 
-@router.post("/extract/")
+@router.post("/extract")
 async def extract(
     db: GetDBDep, user: GetCurrentUserDep, chat_extract_input: ChatExtractInput
 ) -> dict[str, str]:
@@ -58,7 +58,7 @@ async def extract(
     return data
 
 
-# @router.post("/ask/")
+# @router.post("/ask")
 # async def ask(db: GetDBDep, user: GetCurrentUserDep) -> dict[str, str]:
 #     """Returns the"""
 #     data = {"foo": "bar"}
