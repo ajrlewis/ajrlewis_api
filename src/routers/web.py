@@ -1,15 +1,11 @@
 from typing import Annotated, Union
 
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, HTTPException
 from loguru import logger
-from pydantic import BaseModel, Field
 from webkit import scrape as webkit_scrape, search as webkit_search
 
 from dependencies import GetDBDep, GetCurrentUserDep
-
-
-class WebScrapeInput(BaseModel):
-    url: str = Field("ajrlewis.com", description="The URL to web scrape.")
+from schemas.web import Web, WebScrapeInput
 
 
 router = APIRouter(prefix="/web", tags=["Web"])
@@ -18,7 +14,7 @@ router = APIRouter(prefix="/web", tags=["Web"])
 @router.post("/scrape")
 async def scrape(
     db: GetDBDep, user: GetCurrentUserDep, web_scrape_input: WebScrapeInput
-) -> dict:
+) -> Web:
     """Scrapes the text content from a supplied website URL."""
     url = web_scrape_input.url
     logger.debug(f"{url = }")
