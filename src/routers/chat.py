@@ -53,7 +53,11 @@ async def extract(
     logger.debug(f"{message = }")
     content = message["content"]
     logger.debug(f"{content = }")
-    data = json.loads(content)
+    try:
+        data = json.loads(content)
+    except Exception as e:
+        logger.error(f"{e = }")
+        data = {}
     logger.debug(f"{data = }")
     return data
 
