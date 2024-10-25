@@ -2,8 +2,7 @@ from typing import Annotated
 
 from fastapi import Depends, Header, HTTPException, UploadFile, File
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
-
-# from imagekit import imagekit
+import imagekit
 from loguru import logger
 
 import crud.api_user as api_user_crud
@@ -12,15 +11,20 @@ from models.api_user import APIUser
 
 GetCredentialsDep = Annotated[HTTPAuthorizationCredentials, Depends(HTTPBearer())]
 
-# async def load_image(file: UploadFile = File(...)):
-#     logger.debug(f"{file.content_type = }")
-#     if file.content_type != "image/png":
-#         raise HTTPException(status_code=400, detail="Only PNG images are allowed")
-#     logger.debug(f"{file = }")
-#     img = imagekit.load(await file.read())
-#     return img
 
-# LoadImageDep = Annotated[imagekit.Img, Depends(load_image)]
+async def load_image(file: UploadFile = File(...)) -> imagekit.Image:
+    logger.debug(f"{file = } {file.content_type = }")
+    allowed_content_types = ("image/png", "image/jpeg", "image/jpg")
+    if file.content_type not in allowed_content_types:
+        detail = f"Only {allowed_content_types} allowed"
+        logger.error(f"{detail = }")
+        raise HTTPException(status_code=400, detail=detail)
+    img = imagekit.load(await file.read())
+    logger.debug(f"{img = }")
+    return img
+
+
+LoadImageDep = Annotated[imagekit.Image, Depends(load_image)]
 
 
 def get_db():

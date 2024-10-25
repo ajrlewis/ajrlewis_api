@@ -7,14 +7,9 @@ from dependencies import GetDBDep, GetCurrentUserDep
 from schemas import user as user_schema
 
 
-router = APIRouter(
-    prefix="/user",
-    tags=["User"],
-    responses={404: {"description": "Not found"}},
-)
+router = APIRouter(prefix="/api_user", tags=["API User"])
 
 
-# response_model=user_schema.User
 @router.post("/")
 async def create_user(db: GetDBDep, user: user_schema.UserCreate):
     logger.debug(f"{user = }")

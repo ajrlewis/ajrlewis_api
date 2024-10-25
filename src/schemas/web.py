@@ -23,8 +23,10 @@ class WebScrapeInput(BaseModel):
 
 
 class WebSearchInput(BaseModel):
-    keywords: str
-    max_results: int
+    keywords: str = Field(
+        "Satoshi Nakamoto", description="The keywords to search, i.e. the search query."
+    )
+    max_results: int = Field(5, description="The number of search results to return.")
 
 
 class WebSearchResult(BaseModel):
